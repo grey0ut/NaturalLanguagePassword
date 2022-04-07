@@ -1,6 +1,6 @@
 <#
 .Synopsis
-A Diceware password generating script
+A Diceware passphrase generating script
 .Description
 A Powershell script that can generate Diceware style passphrases. Can even add complexity using predefined character substitution. The built-in Get-Random cmdlet uses a predictable seed for random generation so instead the .NET RNGCryptoServiceProvider is utilized for as true of entropy as we can achieve. Each 'roll' is combined to form a 4 or 5 digit string (depending on noun vs adjective list) of numbers that is then used to select the corresponding word from the associated dictionary. 
 For simplicity the wordlists/dictionaries are stored within this script rather than as separate files. 
@@ -17,6 +17,8 @@ This will cause the script to leave the window open for the administrator to cop
 Provide a string you would like prepended to the password output
 .Parameter Append
 Provide a string you would like appended to the password output
+.Parameter NoSpace
+This switch parameter will remove all spaces from the passphrase.  Goes nicely with "-Complexity UpperCase" for a camelcase passphrase.
 .Example
 C:\> .\New-NaturalLanguagePassword.ps1
 
@@ -42,9 +44,22 @@ Large Phantom1@3
 
 This will output a single Adjective/Noun pair with capital first letters and the string "1@3" on the end
 .NOTES
-    Version:    1.2
-    Author:     Courtney Bodett
-    Creation Date: 12/16/2020
+Version:        1.0
+Author:         C. Bodett
+Creation Date:  12/16/2020
+Purpose/Change: initial version. Borrowed a lot from Tim Evans Blog https://www.timmevans.net. Concept of Natural Lanugage Passwords was taken from Ray Eads, and the word lists were taken from his Github: https://github.com/NaturalLanguagePasswords/system
+Version:        1.1
+Author:         C. Bodett
+Creation Date:  12/18/2020
+Purpose/Change: added a "Shortcut" parameter. 
+Version:        1.2
+Author:         C. Bodett
+Creation Date:  1/21/2021
+Purpose/Change: Added more paramters to allow more control over complexity. This includes being able to manually append and prepend strings, as well as specify capitalizing first letters and/or character substitution.
+Version:        1.3
+Author:         C. Bodett
+Creation Date:  4/07/2022
+Purpose/Change: Added the "NoSpace" parameter to remove spaces from the output.
 #>
 [cmdletbinding()]
 Param(
@@ -53,7 +68,8 @@ Param(
     [String]$Complexity = "Both",
     [String]$Append,
     [String]$Prepend,
-    [Switch]$Shortcut
+    [Switch]$Shortcut,
+    [Switch]$NoSpace
 )
 
 
@@ -9174,14 +9190,6 @@ $Passphrase = 1..$Pairs | Foreach-Object{
 }
 $OutputObject = $Passphrase -join " "
 
-<# Ver 1.1 method
-If ($Complexity){
-    (get-culture).textinfo.ToTitleCase($Outputobject) -replace "e","3" -replace "a","@" -replace "o","0" -replace "s","$" -replace "i","1"
-}Else{
-    $OutputObject
-}
-#>
-
 Switch ($PSBoundParameters.keys){
     'Complexity' {
         Switch ($Complexity){
@@ -9198,14 +9206,18 @@ Switch ($PSBoundParameters.keys){
     }
 }
 
+If ($NoSpace) {
+    $OutputObject = $OutputObject -replace ' ',''
+}
 
 If ($Shortcut){
     $Line = "-"*($OutputObject.Length)
-    #Write-Host "Here is your passphrase" -ForegroundColor Cyan
+    $OutputObject | Set-Clipboard
     Write-Host $Line -BackgroundColor DarkBlue -ForegroundColor DarkCyan
     $OutputObject
     Write-Host $Line -BackgroundColor DarkBlue -ForegroundColor DarkCyan
     Write-Host " "
+    Write-Host "Password has been copied to clipboard."
     Write-Host "Press enter to close this window..." -ForegroundColor Yellow
     Read-Host
     Exit
