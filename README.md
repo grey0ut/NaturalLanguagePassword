@@ -29,8 +29,10 @@ This will cause the script to leave the window open for the administrator to cop
 ## Parameter Prepend
 Provide a string you would like prepended to the password output
 ## Parameter Append
-Provide a string you would like appended to the password output
-
+Provide a string you would like appended to the password output  
+## Parameter NoSpace
+This switch parameter will remove all spaces from the passphrase.  Goes nicely with "-Complexity UpperCase" for a camelcase passphrase.  
+## Example  
 One of the ways I use this script on the daily is to generate a couple dozen passphrases and then I'll select one that I think is more memorable.
 ```
 PS$> 1..20 | %{.\New-NaturalLanguagePassword -Append '1$6&'}
