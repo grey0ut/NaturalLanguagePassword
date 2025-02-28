@@ -8,8 +8,6 @@
 
 .COMPANYNAME Grey0ut
 
-.DESCRIPTION Natural language password generator
-
 .TAGS Password Passphrase Diceware Natural Language 
 
 .LICENSEURI https://github.com/grey0ut/NaturalLanguagePassword/blob/main/LICENSE
