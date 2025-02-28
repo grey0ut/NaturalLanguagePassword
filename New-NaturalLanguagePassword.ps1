@@ -1,7 +1,30 @@
+<#PSScriptInfo
+
+.VERSION 2.0
+
+.GUID 4238da4b-6a6d-4bee-9307-88c3379c21b1
+
+.AUTHOR Courtney Bodett
+
+.COMPANYNAME Grey0ut
+
+.DESCRIPTION Natural language password generator
+
+.TAGS Password Passphrase Diceware Natural Language 
+
+.LICENSEURI https://github.com/grey0ut/NaturalLanguagePassword/blob/main/LICENSE
+
+.PROJECTURI https://github.com/grey0ut/NaturalLanguagePassword
+
+.ICONURI
+
+.RELEASENOTES
+#>
+
 <#
-    .Synopsis
+    .SYNOPSIS
     A Diceware passphrase generating script
-    .Description
+    .DESCRIPTION
     A Powershell script that can generate Diceware style passphrases. Can even add complexity using predefined character substitution. The built-in Get-Random cmdlet uses a predictable seed for random generation so instead the .NET RNGCryptoServiceProvider is utilized for as true of entropy as we can achieve. Each 'roll' is combined to form a 4 or 5 digit string (depending on noun vs adjective list) of numbers that is then used to select the corresponding word from the associated dictionary. 
     For simplicity the wordlists/dictionaries are stored within this script rather than as separate files. 
     .PARAMETER Pairs
