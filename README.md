@@ -30,8 +30,8 @@ This will cause the script to leave the window open for the administrator to cop
 Provide a string you would like prepended to the password output
 ## Parameter Append
 Provide a string you would like appended to the password output  
-## Parameter NoSpace
-This switch parameter will remove all spaces from the passphrase.  Goes nicely with "-Complexity UpperCase" for a camelcase passphrase.  
+## Parameter Delimiter
+This parameter accepts any string you would prefer as a delimiter between words. Defaults to a space. Goes nicely with "-Complexity UpperCase" for a camelcase passphrase.  
 ## Example  
 One of the ways I use this script on the daily is to generate a couple dozen passphrases and then I'll select one that I think is more memorable.
 ```
@@ -63,4 +63,9 @@ If you're really big on character substitution you can add that and maybe just d
 ```
 PS$> .\New-NaturalLanguagePassword -Complexity Both -Pairs 1
 N3rv0u$ $3rv1c3
+```
+If you'd prefer your own delimiter that can be defined as well
+```
+PS$> .\New-NaturalLanguagePassword -pairs 2 -Prepend "START" -Append "END" -Delimiter '/'
+START/chic/rift/busy/platypus/END
 ```
