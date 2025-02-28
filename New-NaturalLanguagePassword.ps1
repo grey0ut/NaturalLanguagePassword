@@ -77,7 +77,6 @@
 
     This will create 5 passphrases with 2 Adjective/Noun pairs, capital first letters and a random number.
     .NOTES
-    Version:        2.0
     Author:         C. Bodett
     Creation Date:  2/28/2025
     Purpose/Change: major rewrite.
