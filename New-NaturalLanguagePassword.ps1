@@ -23,7 +23,7 @@
 
 <#
     .SYNOPSIS
-    A Diceware passphrase generating script
+    A script for generating Natural Language style passphrases comprised of adjective/noun pairs. 
     .DESCRIPTION
     A Powershell script that can generate Diceware style passphrases. Can even add complexity using predefined character substitution. The built-in Get-Random cmdlet uses a predictable seed for random generation so instead the .NET RNGCryptoServiceProvider is utilized for as true of entropy as we can achieve. Each 'roll' is combined to form a 4 or 5 digit string (depending on noun vs adjective list) of numbers that is then used to select the corresponding word from the associated dictionary. 
     For simplicity the wordlists/dictionaries are stored within this script rather than as separate files. 
