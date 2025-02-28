@@ -85,5 +85,5 @@ C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -exec b -co
 ```  
 Or whatever your preferences are for generation.  The shortcut properties could look something like this:  
 ![ShortCutDetails](/Assets/Shortcut_Details.png)  
-Double-click the shortcut and you'll be presented with a window like this where you can copy out whichever candidate phrases you prefer to the look of.  
+Double-click the shortcut and you'll be presented with a window like this where you can copy out whichever candidate phrases you prefer the look of.  
 ![ShortcutOutput](/Assets/Shortcut.png)
